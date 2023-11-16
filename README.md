@@ -1,5 +1,5 @@
 # CB-Stellar-Challenge-Web-Development-
-Each week's assignmenment's code files can be found in different branches named as "Week (no.)". (Example: Week 2 code files are in branch "Week 2".} 
+Each week's assignmenment's code files can be found in different branches named as "Week (no.)". (Example: Week 2 code files are in branch "Week 2") 
 However, code file(s) for Week 1 assignment are present in "main" branch.
 
 Week 1 Assignment:-
