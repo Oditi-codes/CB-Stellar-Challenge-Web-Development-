@@ -1,0 +1,56 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-image: url('https://img.freepik.com/premium-vector/nature-forest-landscape-background_1308-71950.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: This keeps the background fixed when scrolling */
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+}
+header{
+    background-color: #054d06 ;
+    color:white;
+    p{
+        text-align: center;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 600px;
+        border-radius: 10px;
+    }
+
+}
+h1{
+    text-align: center;
+    color:   #d4ff00  ;
+}
+p{
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+
+#story {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+
+
+}
+button {
+    font-size: 16px;
+    margin: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color:#ff9300;
+    color:black;
+
+}

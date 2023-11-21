@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Story</title>
+  <link rel="stylesheet" href="style_week3.css">
+</head>
+<body>
+    <header>
+        <p>
+
+        </p>
+        <h1> The Magical World of Eldoria</h1>
+        <p><b>This is an interactive story where you explore a magical world known as Eldoria. You can use the buttons to choose your path of journey ahead and explore.</b></p>
+    </header>
+    
+
+    <div id="story">
+    <p>Welcome to the magical world of Eldoria. You find yourself standing at the crossroads. You have two paths ahead of you.</p>
+    <button onclick="startJourney()"><b>Take the left path</b></button>
+    <button onclick="startDanger()"><b>Take the right path</b></button>
+    </div>
+
+    <script>
+    function startJourney() {
+        document.getElementById('story').innerHTML = `
+        <p>You chose the left path. As you walk through the enchanted forest, you encounter a friendly elf who offers to guide you.</p>
+        <button onclick="meetWizard()"><b>Accept the elf's guidance</b></button>
+        <button onclick="rejectElf()"><b>Decline and continue alone</b></button>
+        `;
+    }
+
+    function startDanger() {
+        document.getElementById('story').innerHTML = `
+        <p>You chose the right path. The path leads you to a dark cave. You hear mysterious sounds emanating from inside.</p>
+        <button onclick="enterCave()"><b>Enter the cave</b></button>
+        <button onclick="avoidCave()"><b>Avoid the cave and continue walking</b></button>
+        `;
+    }
+
+    function meetWizard() {
+        document.getElementById('story').innerHTML = `
+        <p>The elf leads you to a wise wizard who offers to grant you a magical power. What power do you choose?</p>
+        <button onclick="choosePower('fire')"><b>Fire</b></button>
+        <button onclick="choosePower('water')"><b>Water</b></button>
+        `;
+    }
+
+    function rejectElf() {
+        document.getElementById('story').innerHTML = `
+        <p>You decide to continue alone. The forest becomes denser, and you encounter a pack of wolves.</p>
+        <button onclick="fightWolves()"><b>Fight the wolves</b></button>
+        <button onclick="climbTree()"><b>Climb a tree to escape</b></button>
+        `;
+    }
+
+    function enterCave() {
+        document.getElementById('story').innerHTML = `
+        <p>As you enter the cave, you discover a treasure chest. However, a dragon appears to be guarding it!</p>
+        <button onclick="faceDragon()"><b>Face the dragon</b></button>
+        <button onclick="sneakAway()"><b>Sneak away without disturbing the dragon</b></button>
+        `;
+    }
+
+    function avoidCave() {
+        document.getElementById('story').innerHTML = `
+        <p>You decide to avoid the cave. As you walk further, you stumble upon a hidden treasure in a meadow.</p>
+        <p>Congratulations! You've found the treasure and completed your adventure.</p>
+        <button onclick="location.reload()"><b>Play again</b></button>
+        `;
+    }
+
+    function choosePower(power) {
+        document.getElementById('story').innerHTML = `
+        <p>You now possess the power of ${power}. Your journey continues.</p>
+        <p>Congratulations! You've completed your adventure with magical powers.</p>
+        <button onclick="location.reload()"><b>Play again</b></button>
+        `;
+    }
+
+    function fightWolves() {
+        document.getElementById('story').innerHTML = `
+        <p>You bravely fight the wolves, but unfortunately, they overpower you.</p>
+        <p>Game over. Try again!</p>
+        <button onclick="location.reload()"><b>Play again</b></button>
+        `;
+    }
+
+    function climbTree() {
+        document.getElementById('story').innerHTML = `
+        <p>You successfully climb a tree and escape the wolves. From above, you spot a hidden path leading to a magical realm.</p>
+        <p>Congratulations! You've discovered the magical realm and completed your adventure.</p>
+        <button onclick="location.reload()"><b>Play again</b></button>
+        `;
+    }
+
+    function faceDragon() {
+        document.getElementById('story').innerHTML = `
+        <p>You bravely face the dragon, but it breathes fire and overwhelms you.</p>
+        <p>Game over. Try again!</p>
+        <button onclick="location.reload()"><b>Play again</b></button>
+        `;
+    }
+
+    function sneakAway() {
+        document.getElementById('story').innerHTML = `
+        <p>You successfully sneak away without disturbing the dragon. As you exit the cave, you find a hidden passage leading to a magical realm.</p>
+        <p>Congratulations! You've discovered the magical realm and completed your adventure.</p>
+        <button onclick="location.reload()"><b>Play again</b></button>
+        `;
+    }
+    </script>
+
+</body>
+</html>
