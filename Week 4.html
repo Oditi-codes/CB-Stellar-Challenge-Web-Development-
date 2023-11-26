@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #00bcd4;
+            padding:20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #000000;
+            margin: 0;
+        }
+
+        .input-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 15px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .task:hover {
+            background-color: #f0f0f0;
+        }
+
+        .category-filter {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .category-filter label {
+            margin-right: 10px;
+            display: block;
+        }
+
+        select,
+        #filter-category {
+            width: 100%;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>To-Do List</h1>
+    </header>
+    <p></p>
+    <div class="input-container">
+        <label for="task-input">Task:</label>
+        <input type="text" id="task-input">
+        <label for="due-date">Due Date:</label>
+        <input type="date" id="due-date">
+        <label for="category">Category:</label>
+        <select id="category">
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Shopping">Shopping</option>
+        </select>
+        <button onclick="addTask()">Add</button>
+    </div>
+
+    <div class="category-filter">
+        <label for="filter-category">Filter by Category:</label>
+        <select id="filter-category" onchange="filterTasks()">
+            <option value="All">All</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Shopping">Shopping</option>
+        </select>
+    </div>
+
+    <ul id="task-list" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+    
+    <footer>
+        <p>Developed by Oditi</p>
+    </footer>
+
+    <script>
+        let tasks = [];
+
+        function addTask() {
+            const taskInput = document.getElementById("task-input");
+            const dueDateInput = document.getElementById("due-date");
+            const categoryInput = document.getElementById("category");
+
+            const task = {
+                id: tasks.length + 1,
+                text: taskInput.value,
+                dueDate: dueDateInput.value,
+                category: categoryInput.value,
+            };
+
+            tasks.push(task);
+            renderTasks();
+            clearInputs();
+        }
+
+        function renderTasks() {
+            const taskList = document.getElementById("task-list");
+            taskList.innerHTML = "";
+
+            tasks.forEach(task => {
+                const li = document.createElement("li");
+                li.classList.add("task");
+                li.draggable = true;
+                li.setAttribute("ondragstart", "drag(event)");
+                li.innerHTML = `
+                    <div>
+                        <strong>${task.text}</strong><p></p>
+                        <div>Due Date: ${task.dueDate}</div>
+                        <div>Category: ${task.category}</div>
+                    </div>
+                `;
+                taskList.appendChild(li);
+            });
+        }
+
+        function clearInputs() {
+            document.getElementById("task-input").value = "";
+            document.getElementById("due-date").value = "";
+            document.getElementById("category").value = "work";
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.innerHTML);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            const taskList = document.getElementById("task-list");
+            const newItem = document.createElement("li");
+            newItem.classList.add("task");
+            newItem.draggable = true;
+            newItem.setAttribute("ondragstart", "drag(event)");
+            newItem.innerHTML = data;
+            taskList.appendChild(newItem);
+        }
+
+        function filterTasks() {
+            const selectedCategory = document.getElementById("filter-category").value;
+            const filteredTasks = selectedCategory === "all"
+                ? tasks
+                : tasks.filter(task => task.category === selectedCategory);
+
+            renderTasks(filteredTasks);
+        }
+    </script>
+
+</body>
+</html>
