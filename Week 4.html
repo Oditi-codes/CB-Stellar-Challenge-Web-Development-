@@ -164,11 +164,13 @@
             clearInputs();
         }
 
-        function renderTasks() {
+        function renderTasks(filteredTasks) {
             const taskList = document.getElementById("task-list");
             taskList.innerHTML = "";
 
-            tasks.forEach(task => {
+            const tasksToRender = filteredTasks || tasks;
+
+            tasksToRender.forEach(task => {
                 const li = document.createElement("li");
                 li.classList.add("task");
                 li.draggable = true;
@@ -182,6 +184,16 @@
                 `;
                 taskList.appendChild(li);
             });
+        }
+
+        function filterTasks() {
+            const selectedCategory = document.getElementById("filter-category").value;
+
+            const filteredTasks = selectedCategory === "All"
+                ? tasks
+                : tasks.filter(task => task.category === selectedCategory);
+
+            renderTasks(filteredTasks);
         }
 
         function clearInputs() {
@@ -208,15 +220,6 @@
             newItem.setAttribute("ondragstart", "drag(event)");
             newItem.innerHTML = data;
             taskList.appendChild(newItem);
-        }
-
-        function filterTasks() {
-            const selectedCategory = document.getElementById("filter-category").value;
-            const filteredTasks = selectedCategory === "all"
-                ? tasks
-                : tasks.filter(task => task.category === selectedCategory);
-
-            renderTasks(filteredTasks);
         }
     </script>
 
